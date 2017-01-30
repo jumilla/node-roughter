@@ -22,6 +22,7 @@
     "LICENSE.txt"
   ],
   "scripts": {
+    "watch": "nara",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -35,5 +36,7 @@
     "path-to-regexp": "^1.7.0"
   },
   "devDependencies": {
+    "nara": "^0.2.2",
+    "uglify-js": "^2.7.5"
   }
 }

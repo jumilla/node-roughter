@@ -1,15 +1,15 @@
 
-# Riot Dispatcher
+# Hash router
 
 Tiny hash router.
 
 ```
-riot.dispatcher.hash('/', index)
-riot.dispatcher.hash('/user/:user', show)
-riot.dispatcher.hash('/user/:user/edit', edit)
-riot.dispatcher.hash('/user/:user/album', album)
-riot.dispatcher.hash('/user/:user/album/sort', sort)
-riot.dispatcher.hash('*', notfound)
+router.hash('/', index)
+router.hash('/user/:user', show)
+router.hash('/user/:user/edit', edit)
+router.hash('/user/:user/album', album)
+router.hash('/user/:user/album/sort', sort)
+router.hash('*', notfound)
 ```
 
 
@@ -20,9 +20,7 @@ riot.dispatcher.hash('*', notfound)
 
 Download [roughter.min.js](https://raw.githubusercontent.com/jumilla/riot-dispatcher/master/dist/node-roughter.min.js) (master)
 
-or 
-
-NPM
+### for Node.js
 
 ```sh
 npm install roughter --save
