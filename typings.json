@@ -1,0 +1,6 @@
+{
+  "name": "roughter",
+  "devDependencies": {
+    "path-to-regexp": "registry:dt/path-to-regexp#1.0.3+20160428043022"
+  }
+}

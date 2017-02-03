@@ -1,5 +1,5 @@
 
-var hash = (function () {
+const hash = (function () {
 	var object = {}
 
 	object.current = function () {
@@ -17,4 +17,4 @@ var hash = (function () {
 	return object
 }())
 
-module.exports = hash
+export default hash

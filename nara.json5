@@ -1,3 +1,27 @@
 {
+    tasks: [
+        {
+            name: 'Webpack',
+            dependency: [
+                'src/*',
+            ],
+            command: [
+                'webpack',
+            ],
+        },
 
+        {
+            name: 'UglifyJS',
+            dependency: [
+                'dist/roughter.js',
+            ],
+            command: [
+                'uglifyjs \
+                    dist/roughter.js \
+                    --compress --mangle \
+                    --output dist/roughter.min.js \
+                ',
+            ],
+        },
+    ],
 }

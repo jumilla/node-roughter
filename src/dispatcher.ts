@@ -1,27 +1,40 @@
 
-var riot = require('riot')
-var pathToRegexp = require('path-to-regexp')
+import * as pathToRegexp from 'path-to-regexp'
 
-function hashpath() {
+function hashpath() : string {
 	// cut prefix '#'
 	return window.location.hash.slice(1)
 }
 
+/*
 if (!String.prototype.startsWith) {
 	String.prototype.startsWith = function(searchString, position) {
 		position = position || 0
 		return this.lastIndexOf(searchString, position) === position
 	};
 }
+*/
 
-var dispatcher = (function () {
-	var object = {
-		hashCurrent: hashpath(),
-		hashPrevious: '',
-		hashRoutes: [],
+	interface Route {
+
 	}
 
-	object.hash = function (path, arg) {
+export class Dispatcher {
+	private previous : string;
+
+	private hashCurrent() : string {
+		return hashpath()
+	}
+
+	private hashPrevious() : string {
+		return this.previous
+	}
+
+	private hashRoutes() : [Route] {
+		return <[Route]>[]
+	}
+
+	public hash = function (path, arg) {
 		if (path === undefined) throw new TypeError('invalid argument arg[1:path]')
 		if (arg === undefined) throw new TypeError('invalid argument arg[2:arg]')
 
@@ -31,6 +44,7 @@ var dispatcher = (function () {
 		var route = {
 			re: re,
 			keys: keys,
+			callback: null,
 		}
 
 		if (typeof arg === 'function') {
@@ -38,40 +52,31 @@ var dispatcher = (function () {
 		}
 		else {
 			route.callback = function () {
-				riot.route(arg)
+				// TODO
+				//riot.route(arg)
 			}
 		}
 
-		object.hashRoutes.push(route)
+		this.hashRoutes.push(route)
 	}
 
-	object.dispatch = function (path) {
+	public dispatch = function (path) {
 		if (!path) {
 			path = hashpath()
 		}
 		else {
-			object.hashPrevious = object.hashCurrent
-			object.hashCurrent = path
+			this.hashPrevious = this.hashCurrent
+			this.hashCurrent = path
 		}
 
-		var routes = object.hashRoutes
+		var routes = this.hashRoutes
 		for (var index = 0; index < routes.length; ++index) {
 			var route = routes[index]
 			var result = route.re.exec(path)
 			if (result) {
-				route.callback.apply(object, result.slice(1))
+				route.callback.apply(this, result.slice(1))
 				return
 			}
 		}
 	}
-
-	riot.route.parser(function (path) {
-		return path
-	})
-
-	riot.route(object.dispatch)
-
-	return object
-}())
-
-module.exports = dispatcher
+}

@@ -37,6 +37,10 @@
   },
   "devDependencies": {
     "nara": "^0.2.2",
-    "uglify-js": "^2.7.5"
+    "ts-loader": "^2.0.0",
+    "typescript": "^2.1.5",
+    "typings": "^2.1.0",
+    "uglify-js": "^2.7.5",
+    "webpack": "^2.2.1"
   }
 }

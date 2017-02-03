@@ -1,0 +1,7 @@
+{
+    "compileOptions": {
+    },
+    "files": [
+        "typings/index.d.ts"
+    ]
+}
