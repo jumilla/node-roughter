@@ -1,6 +1,7 @@
 /// <reference path='../typings/index.d.ts' />
 
 import {assert} from 'chai'
+import {router} from '../src/router'
 
 describe('Array', function() {
 	describe('#indexOf()', function() {

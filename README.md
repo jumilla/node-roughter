@@ -10,6 +10,9 @@ router.hash('/user/:user/edit', edit)
 router.hash('/user/:user/album', album)
 router.hash('/user/:user/album/sort', sort)
 router.hash('*', notfound)
+
+// start router
+router.start()
 ```
 
 
@@ -18,7 +21,7 @@ router.hash('*', notfound)
 
 ### for Browser
 
-Download [roughter.min.js](https://raw.githubusercontent.com/jumilla/riot-dispatcher/master/dist/node-roughter.min.js) (master)
+Download [roughter.min.js](https://raw.githubusercontent.com/jumilla/node-roughter/master/dist/roughter.min.js) (master)
 
 ### for Node.js
 

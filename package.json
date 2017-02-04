@@ -1,6 +1,6 @@
 {
   "name": "roughter",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Tiny hash router.",
   "keywords": [
     "hash",
@@ -14,11 +14,7 @@
   "license": "MIT",
   "main": "./node.js",
   "files": [
-    "dispatcher",
-    "hash",
-    "lib",
     "dist",
-    "gulpfile.js",
     "LICENSE.txt"
   ],
   "scripts": {

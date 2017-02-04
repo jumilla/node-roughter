@@ -1,4 +1,5 @@
 
-import router from './router'
+import {Router} from './router'
 
-window['router'] = router
+window['router'] = new Router(window)
+
