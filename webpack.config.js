@@ -6,9 +6,13 @@ module.exports = {
 		filename: 'roughter.js'
 	},
 
+	resolve: {
+		extensions: ['.ts'],
+	},
+
 	module: {
 		rules: [
-			{ test: /\.ts$/, loader: 'ts-loader?sourceMaps' },
+			{ test: /\.ts$/, loader: 'ts-loader' },
 		]
 	},
 

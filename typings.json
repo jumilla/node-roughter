@@ -2,5 +2,8 @@
   "name": "roughter",
   "devDependencies": {
     "path-to-regexp": "registry:dt/path-to-regexp#1.0.3+20160428043022"
+  },
+  "globalDependencies": {
+    "mocha": "registry:dt/mocha#2.2.5+20170204022515"
   }
 }

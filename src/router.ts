@@ -15,12 +15,16 @@ if (!String.prototype.startsWith) {
 }
 */
 
-	interface Route {
-
-	}
+export interface Route {
+	re: RegExp;
+	keys: [string];
+	callback?: () => void;
+}
 
 export class Dispatcher {
 	private previous : string;
+
+	private routes : [Route] = <[Route]>[]
 
 	private hashCurrent() : string {
 		return hashpath()
@@ -31,21 +35,17 @@ export class Dispatcher {
 	}
 
 	private hashRoutes() : [Route] {
-		return <[Route]>[]
+		return this.routes
 	}
 
-	public hash = function (path, arg) {
-		if (path === undefined) throw new TypeError('invalid argument arg[1:path]')
-		if (arg === undefined) throw new TypeError('invalid argument arg[2:arg]')
+	public hash(path : string, arg) : void {
+		//if (path === undefined) throw new TypeError('invalid argument arg[1:path]')
+		//if (arg === undefined) throw new TypeError('invalid argument arg[2:arg]')
 
-		var keys = []
-		var re = pathToRegexp(path, keys)
+		let keys = <[string]>[]
+		const re = pathToRegexp(path, keys)
 
-		var route = {
-			re: re,
-			keys: keys,
-			callback: null,
-		}
+		const route : Route = {re, keys}
 
 		if (typeof arg === 'function') {
 			route.callback = arg
@@ -57,10 +57,10 @@ export class Dispatcher {
 			}
 		}
 
-		this.hashRoutes.push(route)
+		this.routes.push(route)
 	}
 
-	public dispatch = function (path) {
+	public dispatch(path? : string) {
 		if (!path) {
 			path = hashpath()
 		}
@@ -69,10 +69,9 @@ export class Dispatcher {
 			this.hashCurrent = path
 		}
 
-		var routes = this.hashRoutes
-		for (var index = 0; index < routes.length; ++index) {
-			var route = routes[index]
-			var result = route.re.exec(path)
+		var routes = this.routes
+		for (let route of this.routes) {
+			const result = route.re.exec(path)
 			if (result) {
 				route.callback.apply(this, result.slice(1))
 				return

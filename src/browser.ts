@@ -1,4 +1,4 @@
 
-import router from './node'
+import router from './router'
 
-//window.router = router
+window['router'] = router

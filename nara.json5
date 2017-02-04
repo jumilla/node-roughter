@@ -3,7 +3,7 @@
         {
             name: 'Webpack',
             dependency: [
-                'src/*',
+                'src/**/*.ts',
             ],
             command: [
                 'webpack',
@@ -21,6 +21,16 @@
                     --compress --mangle \
                     --output dist/roughter.min.js \
                 ',
+            ],
+        },
+
+        {
+            name: 'Unit Test',
+            dependency: [
+                'test/*.ts',
+            ],
+            command: [
+                'tsc typings/index.d.ts test/*.ts',
             ],
         },
     ],
