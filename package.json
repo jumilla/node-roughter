@@ -1,6 +1,6 @@
 {
   "name": "roughter",
-  "version": "0.2.3",
+  "version": "1.0.0",
   "description": "Tiny hash router.",
   "keywords": [
     "hash",
