@@ -1,6 +1,6 @@
 {
   "name": "roughter",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Tiny hash router.",
   "keywords": [
     "hash",
@@ -12,14 +12,16 @@
   ],
   "author": "Fumio Furukawa",
   "license": "MIT",
-  "main": "./node.js",
+  "main": "./lib/router.js",
+  "types": "./lib/router.d.ts",
   "files": [
     "dist",
+    "lib",
     "LICENSE.txt"
   ],
   "scripts": {
     "watch": "nara",
-    "test": "mocha"
+    "test": "istanbul cover _mocha"
   },
   "repository": {
     "type": "git",
@@ -33,8 +35,8 @@
   },
   "devDependencies": {
     "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
-    "mocha-typescript": "^1.0.18",
     "nara": "^0.2.2",
     "ts-loader": "^2.0.0",
     "typescript": "^2.1.5",

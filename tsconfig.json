@@ -1,10 +1,12 @@
 {
     "compilerOptions": {
         "declaration": true,
-        "declarationDir": ".",
-        "module": "commonjs"
+        "module": "commonjs",
+        "outDir": "lib",
+        "inlineSourceMap": true
     },
     "files": [
-        "typings/index.d.ts"
+        "typings/index.d.ts",
+        "src/router.ts"
     ]
 }

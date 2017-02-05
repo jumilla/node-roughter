@@ -1,20 +1,6 @@
 
 import * as pathToRegexp from 'path-to-regexp'
 
-function hashpath() : string {
-	// cut prefix '#'
-	return window.location.hash.slice(1)
-}
-
-/*
-if (!String.prototype.startsWith) {
-	String.prototype.startsWith = function(searchString, position) {
-		position = position || 0
-		return this.lastIndexOf(searchString, position) === position
-	};
-}
-*/
-
 interface Route {
 	re: RegExp;
 	keys: string[];
@@ -44,32 +30,27 @@ export class Router {
 		this.window = window
 	}
 
-	hash(path : string, arg : any) : void {
+	hash(path : string, callback : () => void) : void {
 		//if (path === undefined) throw new TypeError('invalid argument arg[1:path]')
 		//if (arg === undefined) throw new TypeError('invalid argument arg[2:arg]')
 
 		let keys = <string[]>[]
 		const re = pathToRegexp(path, keys)
 
-		const route : Route = {re, keys}
-
-		if (typeof arg === 'function') {
-			route.callback = arg
-		}
-		else {
-			route.callback = function () {
-				// TODO
-				//riot.route(arg)
-			}
-		}
+		const route : Route = {re, keys, callback}
 
 		this.routes.push(route)
+	}
+
+	hashpath() : string {
+		// cut prefix '#'
+		return this.window.location.hash.slice(1)
 	}
 
 	start() : void {
 		this.window.addEventListener('hashchange', this.onHashChanged, false)
 
-		const hash : string = hashpath()
+		const hash : string = this.hashpath()
 
 		if (hash.length > 0) {
 			this.dispatch(hash)
@@ -81,18 +62,10 @@ export class Router {
 	}
 
 	private onHashChanged() : void {
-		this.dispatch(hashpath())
+		this.dispatch(this.hashpath())
 	}
 
-	dispatch(path? : string) : void {
-		if (!path) {
-			path = hashpath()
-		}
-		else {
-			// this.hashPrevious = this.hashCurrent
-			// this.hashCurrent = path
-		}
-
+	dispatch(path : string) : void {
 		for (let route of this.routes) {
 			const result = route.re.exec(path)
 
