@@ -1,6 +1,6 @@
 {
   "name": "roughter",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Tiny hash router.",
   "keywords": [
     "hash",
@@ -15,8 +15,8 @@
   "main": "./lib/router.js",
   "types": "./lib/router.d.ts",
   "files": [
-    "dist",
-    "lib",
+    "dist/*.js",
+    "lib/*",
     "LICENSE.txt"
   ],
   "scripts": {

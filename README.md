@@ -1,6 +1,9 @@
 
 # Hash router
 
+[![Build Status](https://travis-ci.org/jumilla/node-roughter.svg)](https://travis-ci.org/jumilla/node-roughter)
+
+
 Tiny hash router.
 
 ```
