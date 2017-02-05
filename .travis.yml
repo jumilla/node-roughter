@@ -1,9 +1,15 @@
 language: node_js
 
 node_js:
-  - "0.12"
-  - "iojs"
-  - "4.1"
-  - "7.5"
+	- "0.12"
+	- "4"
+	- "5"
+	- "6"
+	- "node"
+	- "iojs"
 
 sudo: false
+
+after_success:
+	- npm install codeclimate-test-reporter
+	- codeclimate-test-reporter < coverage/lcov.info

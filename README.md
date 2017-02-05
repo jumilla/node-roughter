@@ -1,8 +1,9 @@
 
-# Hash router
+# Client-side URL Hash router
 
 [![Build Status](https://travis-ci.org/jumilla/node-roughter.svg)](https://travis-ci.org/jumilla/node-roughter)
-
+[![Code Climate Coverage](https://codeclimate.com/github/jumilla/node-roughter/badges/coverage.svg)](https://codeclimate.com/github/jumilla/node-roughter)
+[![Code Climate Score](https://codeclimate.com/github/jumilla/node-roughter/badges/gpa.svg)](https://codeclimate.com/github/jumilla/node-roughter)
 
 Tiny hash router.
 
