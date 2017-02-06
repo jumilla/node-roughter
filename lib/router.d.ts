@@ -1,12 +1,11 @@
 export declare class Router {
     private window;
-    private previous;
     private routes;
+    private onHashChanged;
     constructor(window: Window);
-    hash(path: string, callback: () => void): void;
+    hash(path: string, callback: (...args: any[]) => void): void;
     hashpath(): string;
     start(): void;
     stop(): void;
-    private onHashChanged();
     dispatch(path: string): void;
 }

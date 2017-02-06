@@ -47,7 +47,7 @@ describe('Router', () => {
 
 		let called = false
 
-		window.addEventListener = () => {
+		window.addEventListener = (event, callback, useCapture) => {
 			called = true
 		}
 
@@ -66,7 +66,7 @@ describe('Router', () => {
 
 		let called = false
 
-		window.addEventListener = () => {
+		window.addEventListener = (event, callback, useCapture) => {
 			called = true
 		}
 
@@ -85,10 +85,13 @@ describe('Router', () => {
 
 		let called = false
 
-		window.removeEventListener = () => {
+		window.addEventListener = (event, callback, useCapture) => {
+		}
+		window.removeEventListener = (event, callback, useCapture) => {
 			called = true
 		}
 
+		router.start()
 		router.stop()
 
 		assert.equal(true, called)

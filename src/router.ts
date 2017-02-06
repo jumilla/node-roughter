@@ -10,27 +10,15 @@ interface Route {
 export class Router {
 	private window : Window
 
-	private previous : string
-
 	private routes : Route[] = <Route[]>[]
 
-	// private hashCurrent() : string {
-	// 	return hashpath()
-	// }
-
-	// private hashPrevious() : string {
-	// 	return this.previous
-	// }
-
-	// private hashRoutes() : Route[] {
-	// 	return this.routes
-	// }
+	private onHashChanged : (e : HashChangeEvent) => void = null
 
 	constructor(window : Window) {
 		this.window = window
 	}
 
-	hash(path : string, callback : () => void) : void {
+	hash(path : string, callback : (...args : any[]) => void) : void {
 		//if (path === undefined) throw new TypeError('invalid argument arg[1:path]')
 		//if (arg === undefined) throw new TypeError('invalid argument arg[2:arg]')
 
@@ -44,25 +32,34 @@ export class Router {
 
 	hashpath() : string {
 		// cut prefix '#'
-		return this.window.location.hash.slice(1)
+		let path = this.window.location.hash.slice(1)
+
+		// cut prefix '/'
+		if (path.lastIndexOf('/', 0) === 0) {
+			path = path.slice(1)
+		}
+
+		return path
 	}
 
 	start() : void {
-		this.window.addEventListener('hashchange', this.onHashChanged, false)
+		if (! this.onHashChanged) {
+			this.onHashChanged = event => {
+				this.dispatch(this.hashpath())
+			}
 
-		const hash : string = this.hashpath()
+			this.window.addEventListener('hashchange', this.onHashChanged, false)
 
-		if (hash.length > 0) {
-			this.dispatch(hash)
+			this.dispatch(this.hashpath())
 		}
 	}
 
 	stop() : void {
-		this.window.removeEventListener('hashchange', this.onHashChanged, false)
-	}
+		if (this.onHashChanged) {
+			this.window.removeEventListener('hashchange', this.onHashChanged, false)
 
-	private onHashChanged() : void {
-		this.dispatch(this.hashpath())
+			this.onHashChanged = null
+		}
 	}
 
 	dispatch(path : string) : void {

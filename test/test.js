@@ -34,7 +34,7 @@ describe('Router', function () {
         };
         var router = new router_1.Router(window);
         var called = false;
-        window.addEventListener = function () {
+        window.addEventListener = function (event, callback, useCapture) {
             called = true;
         };
         router.start();
@@ -48,7 +48,7 @@ describe('Router', function () {
         };
         var router = new router_1.Router(window);
         var called = false;
-        window.addEventListener = function () {
+        window.addEventListener = function (event, callback, useCapture) {
             called = true;
         };
         router.start();
@@ -62,9 +62,12 @@ describe('Router', function () {
         };
         var router = new router_1.Router(window);
         var called = false;
-        window.removeEventListener = function () {
+        window.addEventListener = function (event, callback, useCapture) {
+        };
+        window.removeEventListener = function (event, callback, useCapture) {
             called = true;
         };
+        router.start();
         router.stop();
         chai_1.assert.equal(true, called);
     });
